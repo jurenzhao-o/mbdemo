@@ -8,11 +8,29 @@
   <name>mbdemo Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+    <!--  mybatis  -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.5.7</version>
+    </dependency>
+    <!--  mysql驱动包  -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.26</version>
+    </dependency>
+    <!--  junit  -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
+      <version>4.10</version>
+    </dependency>
+    <!--  log4j  -->
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.12</version>
     </dependency>
   </dependencies>
   <build>
