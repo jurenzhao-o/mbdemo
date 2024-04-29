@@ -35,6 +35,7 @@ public class UserMapperTest {
         List<User> all = mapper.findAll();
         all.forEach(System.out::println);
         //7）释放资源
+        sqlSession.close();
         resourceAsStream.close();
 
     }
