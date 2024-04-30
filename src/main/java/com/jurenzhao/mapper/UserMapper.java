@@ -15,4 +15,10 @@ public interface UserMapper {
      * @return
      */
     List<User> findAll();
+
+    /**
+     * 新增人员
+     * @param user
+     */
+    void addUser(User user);
 }
