@@ -8,7 +8,7 @@
     </select>
 
     <insert id="addUser" parameterType="com.jurenzhao.pojo.User">
-        INSERT INTO mybatis.`user` (username, sex, address)
+        INSERT INTO `user` (username, sex, address)
         VALUES(#{username}, #{sex}, #{address});
     </insert>
 
@@ -41,6 +41,19 @@
     <select id="findUserByMap" resultType="com.jurenzhao.pojo.User" parameterType="map">
         select * from user limit #{startPage},#{pageSize}
     </select>
+
+    <select id="findUserCount" resultType="int">
+        select count(1) from user
+    </select>
+
+    <insert id="addUserReturnPrimaryKey" parameterType="com.jurenzhao.pojo.User">
+        /*keyProperty:主键属性名 keyColumn：主键列名 resultType：主键类型 order:执行周期*/
+        <selectKey keyColumn="id" order="AFTER" keyProperty="id" resultType="int">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+        INSERT INTO `user` (username, sex, address)
+        VALUES(#{username}, #{sex}, #{address});
+    </insert>
 
 
 

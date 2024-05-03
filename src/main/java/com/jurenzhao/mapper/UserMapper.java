@@ -65,4 +65,16 @@ public interface UserMapper {
      */
     List<User> findUserByMap(Map<String, Object> map);
 
+    /**
+     * 获取用户数量
+     * @return
+     */
+    int findUserCount();
+
+    /**
+     * 返回主键值
+     * @param user
+     */
+    void addUserReturnPrimaryKey (User user);
+
 }

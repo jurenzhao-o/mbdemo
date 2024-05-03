@@ -155,4 +155,36 @@ public class UserMapperTest {
 
     }
 
+
+    @Test
+    public void findUserCount()throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int userCount = mapper.findUserCount();
+        System.out.println(userCount);
+    }
+
+    @Test
+    public void addUserReturnPrimaryKey()throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User user = new User();
+        user.setAddress("苏州");
+        user.setUsername("胖猫");
+        user.setSex("男");
+        mapper.addUserReturnPrimaryKey(user);
+        System.out.println("id:"+user.getId());
+        sqlSession.commit();
+        sqlSession.close();
+        resourceAsStream.close();
+
+
+    }
+
 }
