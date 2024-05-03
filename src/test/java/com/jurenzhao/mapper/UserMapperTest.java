@@ -10,7 +10,9 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 /**
@@ -65,4 +67,92 @@ public class UserMapperTest {
         sqlSession.close();
         resourceAsStream.close();
     }
+
+    @Test
+    public void updateUser() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User user = new User();
+        user.setId(8);
+        user.setUsername("大悟");
+        user.setSex("女");
+        user.setAddress("北京");
+        mapper.updateUser(user);
+
+        sqlSession.commit();
+        sqlSession.close();
+        resourceAsStream.close();
+    }
+
+    @Test
+    public void deleteUser() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.deleteUser(8);
+        sqlSession.commit();
+        sqlSession.close();
+        resourceAsStream.close();
+    }
+
+    @Test
+    public void findUserById() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User userById = mapper.findUserById(4);
+        System.out.println(userById);
+        sqlSession.close();
+        resourceAsStream.close();
+    }
+
+    @Test
+    public void findUserByName() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        //List<User> userByName = mapper.findUserByName("%百%");
+        List<User> userByName = mapper.findUserByName("百");
+        userByName.forEach(System.out::println);
+        sqlSession.close();
+        resourceAsStream.close();
+    }
+
+    @Test
+    public void findUserByPage() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<User> userByPage = mapper.findUserByPage(0, 2);
+        userByPage.forEach(System.out::println);
+        sqlSession.close();
+        resourceAsStream.close();
+    }
+
+    @Test
+    public void findUserByMap()throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        Map<String, Object> map = new HashMap<>();
+        map.put("startPage",0);
+        map.put("pageSize",2);
+        List<User> userByMap = mapper.findUserByMap(map);
+        userByMap.forEach(System.out::println);
+
+    }
+
 }

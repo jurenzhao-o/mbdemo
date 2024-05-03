@@ -11,4 +11,37 @@
         INSERT INTO mybatis.`user` (username, sex, address)
         VALUES(#{username}, #{sex}, #{address});
     </insert>
+
+    <update id="updateUser" parameterType="com.jurenzhao.pojo.User">
+        UPDATE user SET username=#{username}, sex=#{sex}, address=#{address}
+        WHERE id=#{id};
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
+
+    <select id="findUserById" parameterType="int" resultType="com.jurenzhao.pojo.User">
+        select * from user where id = #{id}
+    </select>
+
+    <!--入参拼接%%-->
+    <!--<select id="findUserByName" parameterType="String" resultType="com.jurenzhao.pojo.User">
+        select * from user where username like #{username}
+    </select>-->
+    <!--入参只传值-->
+    <select id="findUserByName" parameterType="String" resultType="com.jurenzhao.pojo.User">
+        select * from user where username like '%${value}%'
+    </select>
+
+    <select id="findUserByPage" resultType="com.jurenzhao.pojo.User">
+        select * from user limit #{startPage},#{pageSize}
+    </select>
+
+    <select id="findUserByMap" resultType="com.jurenzhao.pojo.User" parameterType="map">
+        select * from user limit #{startPage},#{pageSize}
+    </select>
+
+
+
 </mapper>
