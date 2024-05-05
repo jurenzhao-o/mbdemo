@@ -110,6 +110,12 @@ public interface UserMapper {
 
     List<User> findUserByIds(List<Integer> ids);
 
+    /**
+     * 批量添加用户
+     * @param users
+     */
+    void insertBatch(List<User> users);
+
 
 
 

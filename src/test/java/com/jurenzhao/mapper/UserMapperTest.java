@@ -11,10 +11,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.*;
 /**
@@ -247,6 +244,24 @@ public class UserMapperTest {
         List<User> userByIds = mapper.findUserByIds(Arrays.asList(1,2,3));
         userByIds.forEach(System.out::println);
         sqlSession.close();
+        resourceAsStream.close();
+    }
+
+
+    @Test
+    public void insertBatch() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<User> users = new ArrayList<>();
+        users.add(new User("胖猫","男","四川"));
+        users.add(new User("梦琪","男","深圳"));
+        users.add(new User("谭竹铁出生","女","重庆"));
+        mapper.insertBatch(users);
+        sqlSession.commit();
+        sqlSession.commit();
         resourceAsStream.close();
     }
 
