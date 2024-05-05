@@ -33,5 +33,6 @@
     <!--注册映射文件-->
     <mappers>
         <mapper resource="com/jurenzhao/mapper/UserMapper.xml"></mapper>
+        <mapper resource="com/jurenzhao/mapper/TeacherMapper.xml"></mapper>
     </mappers>
 </configuration>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jurenzhao.mapper.TeacherMapper">
+    <!--resultMap作用：自定义映射关系-->
+    <!--id自定义映射名 type 自定义映射的对象类型-->
+    <resultMap id="teacherMap" type="com.jurenzhao.pojo.Teacher">
+        <!--id定义主键列 property：POJO属性名-->
+        <id property="id" column="tid"></id>
+        <!--result定义普通列 property：POJO属性名 column:数据库列名-->
+        <result property="name" column="tname"></result>
+    </resultMap>
+    <select id="findAllTeacher" resultMap="teacherMap">
+        select * from teacher
+    </select>
+
+</mapper>
