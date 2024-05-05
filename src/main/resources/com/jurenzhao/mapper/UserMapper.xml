@@ -60,6 +60,20 @@
         select * from user where id &gt; #{id}
     </select>
 
+    <!--if语句中不应该使用&&或者|| 只能使用and或者or-->
+    <select id="findUserByCondition" resultType="com.jurenzhao.pojo.User" parameterType="com.jurenzhao.pojo.User">
+        select * from user where 1=1
+        <if test="username != null and username.length() != 0">
+            and username like #{username}
+        </if>
+        <if test="sex != null and sex.length() != 0">
+            and sex = #{sex}
+        </if>
+        <if test="address != null and address.length() != 0">
+            and address like #{address}
+        </if>
+    </select>
+
 
 
 </mapper>

@@ -199,6 +199,23 @@ public class UserMapperTest {
         resourceAsStream.close();
     }
 
+    @Test
+    public void findUserByCondition() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User user = new User();
+        user.setUsername("%百战%");
+        user.setSex("男");
+        user.setAddress("上海");
+        List<User> userByCondition = mapper.findUserByCondition(user);
+        userByCondition.forEach(System.out::println);
+        sqlSession.close();
+        resourceAsStream.close();
+    }
+
 
 
 }

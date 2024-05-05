@@ -85,6 +85,14 @@ public interface UserMapper {
     List<User> findListUseById(int id);
 
 
+    /**
+     * 查询用户根据多种情况
+     * @param user
+     * @return
+     */
+    List<User> findUserByCondition(User user);
+
+
 
 
 }
