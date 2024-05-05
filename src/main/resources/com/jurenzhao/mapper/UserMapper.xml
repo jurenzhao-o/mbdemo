@@ -56,5 +56,10 @@
     </insert>
 
 
+    <select id="findListUseById" resultType="com.jurenzhao.pojo.User" parameterType="int">
+        select * from user where id &gt; #{id}
+    </select>
+
+
 
 </mapper>

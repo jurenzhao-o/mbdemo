@@ -77,4 +77,14 @@ public interface UserMapper {
      */
     void addUserReturnPrimaryKey (User user);
 
+    /**
+     * 查询id大于某个值的用户
+     * @param id
+     * @return
+     */
+    List<User> findListUseById(int id);
+
+
+
+
 }
