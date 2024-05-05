@@ -280,6 +280,36 @@ public class UserMapperTest {
         resourceAsStream.close();
     }
 
+    /*一级缓存默认开启，使用同一个SqlSession才能共享一级缓存*/
+    @Test
+    public void testCache() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper1 = sqlSession.getMapper(UserMapper.class);
+        UserMapper mapper2 = sqlSession.getMapper(UserMapper.class);
+        User user1 = mapper1.findUserById(1);
+        System.out.println(user1.hashCode());
+        User user2 = mapper2.findUserById(1);
+        System.out.println(user2.hashCode());
+    }
+
+    @Test
+    public void testCache2() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession1 = factory.openSession();
+        SqlSession sqlSession2 = factory.openSession();
+        UserMapper mapper1 = sqlSession1.getMapper(UserMapper.class);
+        UserMapper mapper2 = sqlSession2.getMapper(UserMapper.class);
+        User user1 = mapper1.findUserById(1);
+        System.out.println(user1.hashCode());
+        User user2 = mapper2.findUserById(1);
+        System.out.println(user2.hashCode());
+    }
+
 
 
 }
