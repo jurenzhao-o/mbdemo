@@ -311,5 +311,31 @@ public class UserMapperTest {
     }
 
 
+    /**
+     * SqlSession调用close()：操作后SqlSession对象不可用，该对象的缓存数据也不可用
+     * SqlSession调用clearCache()/commint()：操作可清空一级缓存数据
+     * SqlSession调用增删改方法：操作会清空一级缓存数据
+     * @throws IOException
+     */
+    @Test
+    public void testCache3() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper1 = sqlSession.getMapper(UserMapper.class);
+
+        User user1 = mapper1.findUserById(1);
+        System.out.println(user1.hashCode());
+
+        sqlSession.clearCache();
+//        sqlSession.close();
+//        sqlSession = factory.openSession();
+        UserMapper mapper2 = sqlSession.getMapper(UserMapper.class);
+        User user2 = mapper2.findUserById(1);
+        System.out.println(user2.hashCode());
+    }
+
+
 
 }
