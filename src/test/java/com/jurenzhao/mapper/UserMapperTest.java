@@ -183,8 +183,6 @@ public class UserMapperTest {
         sqlSession.commit();
         sqlSession.close();
         resourceAsStream.close();
-
-
     }
 
 }

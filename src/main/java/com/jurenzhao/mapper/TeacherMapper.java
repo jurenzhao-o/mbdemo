@@ -15,4 +15,10 @@ public interface TeacherMapper {
      * @return
      */
     List<Teacher> findAllTeacher();
+
+    /**
+     * 查询所有老师 使用<sql></sql>
+     * @return
+     */
+    List<Teacher> findAllTeacher2();
 }

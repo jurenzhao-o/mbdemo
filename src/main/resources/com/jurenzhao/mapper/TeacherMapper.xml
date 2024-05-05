@@ -14,5 +14,13 @@
     <select id="findAllTeacher" resultMap="teacherMap">
         select * from teacher
     </select>
-
+    <!--定义sql片段-->
+    <sql id="selectAllFieldTeacher">
+        select tid as id,tname as name
+    </sql>
+    <!--include 引入sql片段-->
+    <select id="findAllTeacher2" resultType="com.jurenzhao.pojo.Teacher">
+        <include refid="selectAllFieldTeacher"></include>
+        from teacher
+    </select>
 </mapper>
