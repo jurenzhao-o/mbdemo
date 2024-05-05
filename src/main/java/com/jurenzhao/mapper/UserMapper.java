@@ -100,6 +100,16 @@ public interface UserMapper {
      */
     List<User> findUserByChooseWhenCondition(User user);
 
+    /**
+     * 通过id数组查询用户信息
+     * @param ids
+     * @return
+     */
+   // List<User> findUserByIds(int[] ids);
+
+
+    List<User> findUserByIds(List<Integer> ids);
+
 
 
 

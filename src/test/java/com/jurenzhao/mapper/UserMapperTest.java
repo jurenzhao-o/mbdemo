@@ -10,6 +10,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -227,6 +229,23 @@ public class UserMapperTest {
         user.setUsername("百战");
         List<User> userByChooseWhenCondition = mapper.findUserByChooseWhenCondition(user);
         userByChooseWhenCondition.forEach(System.out::println);
+        sqlSession.close();
+        resourceAsStream.close();
+    }
+
+    @Test
+    public void findUserByIds() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        //数组
+        //int [] array = {1,2,3};
+        //List<User> userByIds = mapper.findUserByIds(array);
+        //集合
+        List<User> userByIds = mapper.findUserByIds(Arrays.asList(1,2,3));
+        userByIds.forEach(System.out::println);
         sqlSession.close();
         resourceAsStream.close();
     }

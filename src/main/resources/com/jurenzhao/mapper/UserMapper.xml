@@ -127,8 +127,27 @@
                 </otherwise>
             </choose>
         </where>
+    </select>
 
+    <!--foreach用法，collection遍历对象，open：开始的sql拼接字符串 close：结束的sql拼接字符串 separator 值与值之间的分隔符-->
+<!--    <select id="findUserByIds" resultType="com.jurenzhao.pojo.User" >-->
+<!--        select * from user -->
+<!--        <where>-->
+<!--           id in-->
+<!--            <foreach collection="array" open="(" close=")" item="id" separator=",">-->
+<!--                #{id}-->
+<!--            </foreach>-->
+<!--        </where>-->
+<!--    </select>-->
 
+    <select id="findUserByIds" resultType="com.jurenzhao.pojo.User" >
+        select * from user
+        <where>
+            id in
+            <foreach collection="list" open="(" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
+        </where>
     </select>
 
 
