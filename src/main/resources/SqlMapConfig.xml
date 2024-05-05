@@ -34,5 +34,6 @@
     <mappers>
         <mapper resource="com/jurenzhao/mapper/UserMapper.xml"></mapper>
         <mapper resource="com/jurenzhao/mapper/TeacherMapper.xml"></mapper>
+        <mapper resource="com/jurenzhao/mapper/StudentMapper.xml"></mapper>
     </mappers>
 </configuration>
