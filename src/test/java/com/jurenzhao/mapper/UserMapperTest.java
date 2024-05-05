@@ -76,7 +76,7 @@ public class UserMapperTest {
         SqlSession sqlSession = factory.openSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user = new User();
-        user.setId(8);
+        user.setId(10);
         user.setUsername("大悟");
         user.setSex("女");
         user.setAddress("北京");

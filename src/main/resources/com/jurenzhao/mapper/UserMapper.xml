@@ -11,11 +11,33 @@
         INSERT INTO `user` (username, sex, address)
         VALUES(#{username}, #{sex}, #{address});
     </insert>
-
+    <!--该写法存在以下问题：如果修改的属性是空值，会同步将字段更新为空-->
+<!--    <update id="updateUser" parameterType="com.jurenzhao.pojo.User">-->
+<!--        UPDATE user SET username=#{username}, sex=#{sex}, address=#{address}-->
+<!--        WHERE id=#{id};-->
+<!--    </update>-->
+    <!--上面sql优化：<set>替代set <if>标签判断属性值是否为空，不为空再拼接sql-->
     <update id="updateUser" parameterType="com.jurenzhao.pojo.User">
-        UPDATE user SET username=#{username}, sex=#{sex}, address=#{address}
-        WHERE id=#{id};
+        update user
+        <set>
+            <if test="username != null and username.length() !=0 ">
+                username=#{username},
+            </if>
+            <if test="sex != null and sex.length() != 0">
+                sex=#{sex},
+            </if>
+            <if test="address != null and address.length() != 0">
+                address=#{address}
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
     </update>
+
+
+
+
 
     <delete id="deleteUser" parameterType="int">
         delete from user where id = #{id}
