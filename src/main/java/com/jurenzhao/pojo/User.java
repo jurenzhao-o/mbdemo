@@ -1,11 +1,13 @@
 package com.jurenzhao.pojo;
 
+import java.io.Serializable;
+
 /**
  * @Author: JuRenZhao
  * @Date: 2024/4/29 15:43
  * @Description: 人员实体
  */
-public class User {
+public class User implements Serializable {
     private int id;
     private String username;
     private String sex;

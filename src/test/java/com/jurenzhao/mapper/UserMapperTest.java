@@ -336,6 +336,25 @@ public class UserMapperTest {
         System.out.println(user2.hashCode());
     }
 
+    @Test
+    public void testCache4() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession1 = factory.openSession();
+        SqlSession sqlSession2 = factory.openSession();
+        UserMapper mapper1 = sqlSession1.getMapper(UserMapper.class);
+        UserMapper mapper2 = sqlSession2.getMapper(UserMapper.class);
+        User user1 = mapper1.findUserById(1);
+        System.out.println(user1.hashCode());
+        sqlSession1.commit();
+
+        User user2 = mapper2.findUserById(1);
+        System.out.println(user2.hashCode());
+        System.out.println(user1.equals(user2));
+
+    }
+
 
 
 }

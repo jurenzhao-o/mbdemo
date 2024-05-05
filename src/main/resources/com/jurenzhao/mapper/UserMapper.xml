@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jurenzhao.mapper.UserMapper">
+    <cache size="2048"></cache>
     <select id="findAll" resultType="com.jurenzhao.pojo.User">
         select * from user
     </select>
@@ -78,7 +79,7 @@
     </insert>
 
 
-    <select id="findListUseById" resultType="com.jurenzhao.pojo.User" parameterType="int">
+    <select id="findListUseById" resultType="com.jurenzhao.pojo.User" parameterType="int" >
         select * from user where id &gt; #{id}
     </select>
 
