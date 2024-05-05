@@ -93,6 +93,14 @@ public interface UserMapper {
     List<User> findUserByCondition(User user);
 
 
+    /**
+     * 查询用户 使用choosewhen标签
+     * @param user
+     * @return
+     */
+    List<User> findUserByChooseWhenCondition(User user);
+
+
 
 
 }

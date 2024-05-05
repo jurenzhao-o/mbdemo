@@ -109,6 +109,25 @@
                 and address like #{address}
             </if>
         </where>
+    </select>
+    <!--需求：用户名<5时使用模糊查询，用户名>=5并且<10时使用精确查询，否则查询id为1的用户-->
+    <!--choose when otherwise 类似于switch case deflault-->
+    <select id="findUserByChooseWhenCondition" resultType="com.jurenzhao.pojo.User" parameterType="com.jurenzhao.pojo.User">
+        select * from user
+        <where>
+            <choose>
+                <when test="username != null and username.length() &lt;5">
+                    and username like '%${username}%'
+                </when>
+                 <when test="username != null and username.length() &lt;10">
+                    and username = #{username}
+                 </when>
+                <otherwise>
+                    and id = 1;
+                </otherwise>
+            </choose>
+        </where>
+
 
     </select>
 
