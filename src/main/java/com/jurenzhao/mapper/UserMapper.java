@@ -116,6 +116,13 @@ public interface UserMapper {
      */
     void insertBatch(List<User> users);
 
+    /**
+     * 查询用户
+     * @param map
+     * @return
+     */
+    List<User> findUsersByMap(@Param("map") Map<String, Object> map);
+
 
 
 

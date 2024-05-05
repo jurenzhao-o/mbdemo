@@ -157,5 +157,20 @@
         </foreach>
     </insert>
 
+    <!-- 拼接的sql类似于这样：select * from user WHERE address=? and sex=?
+       为啥key用$ 因为直接将值直接拼接sql value 用# 作为占位符 防止sql注入
+    -->
+    <select id="findUsersByMap" resultType="com.jurenzhao.pojo.User" parameterType="map">
+        select * from user
+            <where>
+                <foreach collection="map" separator="and" index="key" item="value">
+                   ${key}=#{value}
+                </foreach>
+            </where>
+
+    </select>
+
+
+
 
 </mapper>

@@ -264,6 +264,21 @@ public class UserMapperTest {
         sqlSession.commit();
         resourceAsStream.close();
     }
+    @Test
+    public void findUsersByMap() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        Map<String,Object> map = new HashMap<>();
+        map.put("sex","男");
+        map.put("address","北京");
+        List<User> usersByMap = mapper.findUsersByMap(map);
+        usersByMap.forEach(System.out::println);
+        sqlSession.close();
+        resourceAsStream.close();
+    }
 
 
 
