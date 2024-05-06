@@ -1,5 +1,7 @@
 package com.jurenzhao.pojo;
 
+import java.util.List;
+
 /**
  * @Author: JuRenZhao
  * @Date: 2024/5/6 0:52
@@ -8,6 +10,8 @@ package com.jurenzhao.pojo;
 public class Classes {
     private int id;
     private String className;
+    //学生集合
+    private List<Student> studentList;
 
 
     public Classes() {
@@ -31,5 +35,13 @@ public class Classes {
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
     }
 }

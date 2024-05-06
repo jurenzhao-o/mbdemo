@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jurenzhao.mapper.ClassesMapper">
+    <resultMap id="classesMapper" type="com.jurenzhao.pojo.Classes">
+        <id property="id" column="cid"></id>
+        <result property="className" column="className"></result>
+        <!--property：列名 column:字段名（学生表中班级的主键） ofType 一对多 多涉及的对象 必须有 否则报空指针-->
+        <collection property="studentList" column="classId" ofType="com.jurenzhao.pojo.Student">
+            <id property="id" column="sid"></id>
+            <result property="name" column="name"></result>
+            <result property="age" column="age"></result>
+            <result property="sex" column="sex"></result>
+        </collection>
+    </resultMap>
+    <select id="findAllClasses" resultMap="classesMapper">
+        select * from classes c left join student s on c.cid  = s.classId
+    </select>
+
+</mapper>
