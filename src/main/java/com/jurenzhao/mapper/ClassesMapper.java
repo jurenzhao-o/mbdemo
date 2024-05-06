@@ -15,4 +15,10 @@ public interface ClassesMapper {
      * @return
      */
     List<Classes> findAllClasses();
+
+    /**
+     * 查询班级信息并查询班级关联的老师信息
+     * @return
+     */
+    List<Classes> findAllClasses2();
 }

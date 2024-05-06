@@ -11,8 +11,18 @@
         <!--result定义普通列 property：POJO属性名 column:数据库列名-->
         <result property="name" column="tname"></result>
     </resultMap>
+    <resultMap id="teacherClassesMap" type="com.jurenzhao.pojo.Teacher">
+        <!--id定义主键列 property：POJO属性名-->
+        <id property="id" column="tid"></id>
+        <!--result定义普通列 property：POJO属性名 column:数据库列名-->
+        <result property="name" column="tname"></result>
+        <collection property="classesList" column="tid" ofType="com.jurenzhao.pojo.Classes">
+            <id property="id" column="cid"></id>
+            <result property="className" column="className"></result>
+        </collection>
+    </resultMap>
     <select id="findAllTeacher" resultMap="teacherMap">
-        select * from teacher
+       select * from teacher
     </select>
     <!--定义sql片段-->
     <sql id="selectAllFieldTeacher">
@@ -22,5 +32,9 @@
     <select id="findAllTeacher2" resultType="com.jurenzhao.pojo.Teacher">
         <include refid="selectAllFieldTeacher"></include>
         from teacher
+    </select>
+    <!---->
+    <select id="findAllTeacher3" resultMap="teacherClassesMap">
+        select * from teacher t left join classes_teacher ct on ct.tid  = t.tid left join classes c on c.cid  = ct.cid ;
     </select>
 </mapper>

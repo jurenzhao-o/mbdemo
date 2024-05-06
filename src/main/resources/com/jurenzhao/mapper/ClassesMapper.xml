@@ -14,8 +14,33 @@
             <result property="sex" column="sex"></result>
         </collection>
     </resultMap>
+
     <select id="findAllClasses" resultMap="classesMapper">
         select * from classes c left join student s on c.cid  = s.classId
+    </select>
+
+    <resultMap id="classesTeacherMap" type="com.jurenzhao.pojo.Classes">
+        <id property="id" column="cid"></id>
+        <result property="className" column="className"></result>
+        <!--班级学生一对多-->
+        <collection property="studentList" column="classId" ofType="com.jurenzhao.pojo.Student">
+            <id property="id" column="sid"></id>
+            <result property="name" column="name"></result>
+            <result property="age" column="age"></result>
+            <result property="sex" column="sex"></result>
+        </collection>
+        <collection property="teacherList" column="cid" ofType="com.jurenzhao.pojo.Teacher">
+            <id property="id" column="tid"></id>
+            <result property="name" column="tname"></result>
+        </collection>
+    </resultMap>
+
+    <select id="findAllClasses2" resultMap="classesTeacherMap">
+        select * from classes c
+                left join classes_teacher ct on c.cid = ct.cid
+                left join teacher t on t.tid = ct.tid
+                left join student s on s.classId = c.cid
+
     </select>
 
 </mapper>

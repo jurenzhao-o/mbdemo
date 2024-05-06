@@ -21,4 +21,10 @@ public interface TeacherMapper {
      * @return
      */
     List<Teacher> findAllTeacher2();
+
+    /**
+     * 查询所有老师并查询出所在班级信息
+     * @return
+     */
+    List<Teacher> findAllTeacher3();
 }

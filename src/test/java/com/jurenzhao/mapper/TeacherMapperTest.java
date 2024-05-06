@@ -47,4 +47,17 @@ public class TeacherMapperTest {
         sqlSession.close();
         resourceAsStream.close();
     }
+
+    @Test
+    public void findAllTeacher3() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+        List<Teacher> allTeacher2 = mapper.findAllTeacher3();
+        allTeacher2.forEach(System.out::println);
+        sqlSession.close();
+        resourceAsStream.close();
+    }
 }

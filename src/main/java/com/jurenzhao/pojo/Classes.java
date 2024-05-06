@@ -10,8 +10,12 @@ import java.util.List;
 public class Classes {
     private int id;
     private String className;
-    //学生集合
+    //学生集合 班级学生一对多
     private List<Student> studentList;
+    //老师集合 班级老师多对多
+    private List<Teacher> teacherList;
+
+
 
 
     public Classes() {
@@ -43,5 +47,13 @@ public class Classes {
 
     public void setStudentList(List<Student> studentList) {
         this.studentList = studentList;
+    }
+
+    public List<Teacher> getTeacherList() {
+        return teacherList;
+    }
+
+    public void setTeacherList(List<Teacher> teacherList) {
+        this.teacherList = teacherList;
     }
 }
