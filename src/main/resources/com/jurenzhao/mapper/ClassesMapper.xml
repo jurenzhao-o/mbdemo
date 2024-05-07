@@ -43,4 +43,18 @@
 
     </select>
 
+    <resultMap id="moreCountFindClassesMapper" type="com.jurenzhao.pojo.Classes">
+        <id property="id" column="cid"></id>
+        <result property="className" column="className"></result>
+        <collection property="studentList" column="cid" ofType="com.jurenzhao.pojo.Student"
+                    select="com.jurenzhao.mapper.StudentMapper.findStudentByClassId">
+        </collection>
+    </resultMap>
+
+    <select id="findOnlyClasses" resultMap="moreCountFindClassesMapper">
+        select * from classes;
+    </select>
+
+
+
 </mapper>

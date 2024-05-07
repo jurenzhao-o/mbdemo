@@ -21,4 +21,10 @@ public interface ClassesMapper {
      * @return
      */
     List<Classes> findAllClasses2();
+
+    /**
+     * 只查询班级信息（分解式1对多）
+     * @return
+     */
+    List<Classes> findOnlyClasses();
 }

@@ -22,4 +22,8 @@
         select * from student s  left join classes c on s.classId  = c.cid
     </select>
 
+    <select id="findStudentByClassId" resultType="com.jurenzhao.pojo.Student" parameterType="int">
+        select * from student where classId = ${classId}
+    </select>
+
 </mapper>

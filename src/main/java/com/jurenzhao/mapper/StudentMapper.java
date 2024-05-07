@@ -16,4 +16,11 @@ public interface StudentMapper {
       * @return
      */
     List<Student> findAllStudent();
+
+    /**
+     * 查询特定班级下学生
+     * @param classId
+     * @return
+     */
+    List<Student> findStudentByClassId(Integer classId);
 }

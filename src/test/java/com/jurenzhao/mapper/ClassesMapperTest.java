@@ -45,4 +45,17 @@ public class ClassesMapperTest {
         sqlSession.close();
         resourceAsStream.close();
     }
+
+    @Test
+    public void findOnlyClasses() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        ClassesMapper mapper = sqlSession.getMapper(ClassesMapper.class);
+        List<Classes> onlyClasses = mapper.findOnlyClasses();
+        onlyClasses.forEach(System.out::println);
+        sqlSession.close();
+        resourceAsStream.close();
+    }
 }
