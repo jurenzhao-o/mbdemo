@@ -6,12 +6,12 @@
 
     <properties resource="jdbc.properties"></properties>
     <!--全局设置懒加载-->
-    <settings>
-        <!-- 打开延迟加载的开关 -->
-        <setting name="lazyLoadingEnabled" value="true" />
-        <!-- 将积极加载改为消息加载即按需加载 -->
-        <setting name="aggressiveLazyLoading" value="false" />
-    </settings>
+<!--    <settings>-->
+<!--        &lt;!&ndash; 打开延迟加载的开关 &ndash;&gt;-->
+<!--        <setting name="lazyLoadingEnabled" value="true" />-->
+<!--        &lt;!&ndash; 将积极加载改为消息加载即按需加载 &ndash;&gt;-->
+<!--        <setting name="aggressiveLazyLoading" value="false" />-->
+<!--    </settings>-->
     <!--配置环境-->
     <environments default="mysql">
 <!--        <environment id="mysql">-->
