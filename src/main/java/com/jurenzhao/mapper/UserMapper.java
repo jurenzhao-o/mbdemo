@@ -1,7 +1,9 @@
 package com.jurenzhao.mapper;
 
 import com.jurenzhao.pojo.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.SelectKey;
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,14 @@ public interface UserMapper {
      * @param user
      */
     void addUser(User user);
+
+    /**
+     * 新增人员(注解开发)
+     * @param user
+     */
+    @SelectKey(keyColumn = "id",keyProperty = "id",resultType = int.class,before = false,statement = "SELECT LAST_INSERT_ID()")
+    @Insert("INSERT INTO `user`( username, sex, address)VALUES( #{username}, #{sex}, #{address})")
+    void addUserNote(User user);
 
     /**
      * 更新人员信息
