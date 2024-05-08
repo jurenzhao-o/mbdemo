@@ -54,7 +54,7 @@ public class StudentMapperTest {
         SqlSession sqlSession = factory.openSession();
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
         List<Student> allOnlyStudent = mapper.findAllOnlyStudent();
-        allOnlyStudent.forEach(System.out::println);
+        //allOnlyStudent.forEach(System.out::println);
         sqlSession.close();
         resourceAsStream.close();
     }
