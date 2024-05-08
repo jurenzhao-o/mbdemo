@@ -26,4 +26,19 @@
         select * from student where classId = ${classId}
     </select>
 
+    <resultMap id="findOnlyStudentMapper" type="com.jurenzhao.pojo.Student">
+        <id property="id" column="sid"></id>
+        <result property="name" column="name"></result>
+        <result property="sex" column="sex"></result>
+        <result property="age" column="age"></result>
+        <association property="classes" column="classId"
+                     javaType="com.jurenzhao.pojo.Classes"
+                     select="com.jurenzhao.mapper.ClassesMapper.findClassesById">
+        </association>
+    </resultMap>
+
+    <select id="findAllOnlyStudent" resultMap="findOnlyStudentMapper">
+        select * from student;
+    </select>
+
 </mapper>

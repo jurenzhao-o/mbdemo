@@ -55,6 +55,10 @@
         select * from classes;
     </select>
 
+    <select id="findClassesById" resultType="com.jurenzhao.pojo.Classes" parameterType="int">
+        select * from classes where cid = ${id}
+    </select>
+
 
 
 </mapper>

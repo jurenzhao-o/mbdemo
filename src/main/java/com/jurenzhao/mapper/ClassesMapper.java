@@ -27,4 +27,11 @@ public interface ClassesMapper {
      * @return
      */
     List<Classes> findOnlyClasses();
+
+    /**
+     * 根据id查询班级信息
+     * @param id
+     * @return
+     */
+    Classes findClassesById(int id);
 }

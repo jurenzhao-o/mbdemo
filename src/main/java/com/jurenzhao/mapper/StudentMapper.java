@@ -23,4 +23,10 @@ public interface StudentMapper {
      * @return
      */
     List<Student> findStudentByClassId(Integer classId);
+
+    /**
+     * 查询所有学生不连表查询（拆解式一对一）
+     * @return
+     */
+    List<Student> findAllOnlyStudent();
 }
