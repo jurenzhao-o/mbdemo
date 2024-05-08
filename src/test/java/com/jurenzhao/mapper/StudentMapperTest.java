@@ -34,6 +34,21 @@ public class StudentMapperTest {
     }
 
     @Test
+    public void findAllStudentNote() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        List<Student> allStudent = mapper.findAllStudentNote();
+        allStudent.forEach(System.out::println);
+        sqlSession.close();
+        resourceAsStream.close();
+    }
+
+
+
+    @Test
     public void findStudentByClassId() throws IOException {
         InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();

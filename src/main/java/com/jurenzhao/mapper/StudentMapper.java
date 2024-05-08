@@ -1,6 +1,7 @@
 package com.jurenzhao.mapper;
 
 import com.jurenzhao.pojo.Student;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -18,6 +19,13 @@ public interface StudentMapper {
     List<Student> findAllStudent();
 
     /**
+     * 查询所有学生(注解开发）
+     * @return
+     */
+    @Select("select * from student")
+    List<Student> findAllStudentNote();
+
+    /**
      * 查询特定班级下学生
      * @param classId
      * @return
@@ -29,4 +37,5 @@ public interface StudentMapper {
      * @return
      */
     List<Student> findAllOnlyStudent();
+
 }
