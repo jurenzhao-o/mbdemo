@@ -111,6 +111,25 @@ public class UserMapperTest {
         sqlSession.close();
         resourceAsStream.close();
     }
+    @Test
+    public void updateUserNote() throws IOException {
+        InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(resourceAsStream);
+        SqlSession sqlSession = factory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User user = new User();
+        user.setId(10);
+        user.setUsername("大悟1");
+        user.setSex("女");
+        user.setAddress("北京");
+        mapper.updateUserNote(user);
+
+        sqlSession.commit();
+        sqlSession.close();
+        resourceAsStream.close();
+    }
+
 
     @Test
     public void deleteUser() throws IOException {

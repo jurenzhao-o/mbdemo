@@ -4,6 +4,7 @@ import com.jurenzhao.pojo.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,14 @@ public interface UserMapper {
      * @param user
      */
     void updateUser(User user);
+
+
+    /**
+     * 更新人员信息(注解开发)
+     * @param user
+     */
+    @Update("update user set username = #{username} where id = #{id}")
+    void updateUserNote(User user);
 
     /**
      * 删除人员信息
